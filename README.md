@@ -31,14 +31,14 @@ notes		TEXT,
 
 
 The project is organized into various folders as shown in one of the screencasts. It contains:
-•	Application folder which contains:
+•Application folder which contains:
  - Main.py
  - Config.py
  - Controllers.py
  - Database.py
  - Models.py
-•	Static folder which contains all the static files like the trendline and graphs
-•	Templates folder which contains all the html files required for the application
+•Static folder which contains all the static files like the trendline and graphs
+•Templates folder which contains all the html files required for the application
 
 **************************
 
