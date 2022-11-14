@@ -1,0 +1,21 @@
+
+<h2>Couldnt find you </h2>
+There is no such username/password in the database. Please recheck or <a href = '/signup'>signup</a>.
+
+
+
+ {% comment %} {%<table style = "color: white; padding-top: 2em;" class = 'table'>
+                    <tr>
+                        <th>Tracker</th>
+                        <th>Type</th>
+                        <th>Actions</th>
+                    </tr>
+                    {%for i in tracker_list%}
+                    <tr>
+                        <td><a href='/tracker/{{name}}/{{i['tracker_name']}}'>{{i['tracker_name']}}</a></td>
+                        <td>{{i['tracker_type']}}</td>
+                        <td><a href='/tracker/{{i['tracker_name']}}/add/{{name}}'>Add</a> <br> <a href='/tracker/{{i}}/delete/{{name}}'>Delete</a></td>
+                    </tr>
+                    {%endfor%}
+                </table>
+                %}          {% endcomment %}

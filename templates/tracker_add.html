@@ -1,0 +1,82 @@
+<DOCTYPE! html>
+<html>
+<head>
+    <title> Add Tracker </title>
+   
+    <link href="/static/css/main.min.css" rel="stylesheet">
+</head>
+
+<style>
+    body {
+    
+        background-color: #362f58;
+        background-size: cover;
+        padding-top : 2en;
+        color: white;
+        padding-top: 2en;
+       }
+      
+       .container{
+      
+        align: center;
+       padding-left: 10em;
+        padding-top : 5em;
+       }
+        h1{
+            text-align : center;
+          
+        }
+</style>
+
+
+<body class = 'container'>
+    <h1 class = 'row' style = "text-align: center;"> Please enter the below values to add a new tracker</h1>
+   <p  style = "text-align: center;">Select the Tracker type as numeric if you want to track a numerical quantity. 
+       Select Multiple if you want to give a set of pre defined values
+   </p>
+       
+     
+   <div >
+        
+        <form action="/tracker/add/{{name}}" method="POST" id="signup">
+        
+                <div class = 'row'  align='center'>
+                    <label class = 'col-3'>Name:</label>
+                    <input class = 'col-3' type='text' name='tname' required />
+                </div>
+         
+
+    
+            
+                <div class = 'row' align = 'center'>
+                    <label class = 'col-3'>Description:</label>
+                    <input class = 'col-3' type='text' name='tdesc' required />
+                </div>
+         
+       
+  
+         
+                <div class = 'row' align='center'> 
+                    <label class = 'col-3'>Tracker Type</label>
+                    <select class = 'col-3' name="ttype" id = 'ttype'/>
+                        <option value = 'numeric'>Numeric</option>
+                        <option value = 'multiple choice'>Multiple Choice</option>
+                        <option value = 'other'>Any other type</option>
+                    </select>   
+                
+                </div>
+
+
+  
+        
+                <div class = 'row'  align='center'>
+                    <label class = 'col-3'>Settings:</label>
+                    <input class = 'col-3' type='text' name='tsettings'  />
+                </div>
+            
+  
+
+            <div align='center' >
+                <input type="submit" value = "Submit">
+            </div>
+        </form>

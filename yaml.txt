@@ -1,0 +1,185 @@
+openapi: 3.0.0
+info:
+  title: Quantiphi API
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:5000/
+paths:
+  /api/tracker/{name}/{tracker_name}:
+    description: End point to retrieve the logs for a specific tracker and a specific user(name= user_name).
+    get:
+      description: Operation to retrieve the logs for the given user and tracker
+      parameters:
+        - in: path
+          name: name
+          required: true
+          schema:
+            type: string
+            example: sharan
+        - in: path
+          name: tracker_name
+          required: true
+          schema:
+            type: string
+            example: Running
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: course object
+                type: object
+                properties:
+                  datetime:
+                    type: string
+                    example: '2022-03-09 17:20:00'
+                  value:
+                    type: string
+                    example: '1'
+                  notes:
+                    type: string
+                    example: Not good
+        '500':
+          description: Internal Server Error
+        '404':
+          description: No logs not found
+  /api/tracker/{tracker_name}/add/{name}:
+    description: End point to add a new log to the tracker for the given user
+    post:
+      description: Operation to add a new log to the tracker for the user.
+      parameters:
+        - in: path
+          name: tracker_name
+          required: true
+          schema:
+            type: string
+            example: Running
+        - in: path
+          name: name
+          required: true
+          schema:
+            type: string
+            example: sharan
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                datetime:
+                  type: string
+                  example: '2022-03-09 17:20:00'
+                value:
+                  type: string
+                  example: '1'
+                notes:
+                  type: string
+                  example: Not good
+                  nullable: True
+      responses:
+        '201':
+          description: Successfully Created
+          content:
+            application/json:
+              schema:
+                title: course object
+                type: object
+                properties:
+                  datetime:
+                    type: string
+                    example: '2022-03-09 17:20:00'
+                  value:
+                    type: string
+                    example: '1'
+                  notes:
+                    type: string
+                    example: Not good
+        '500':
+          description: Internal Server Error
+        '404':
+          description: Tracker or user not found.
+  /api/tracker:
+    description: End point to create a new tracker
+    post:
+      description: Operation to create a new tracker
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tracker_name:
+                  type: string
+                  example: Running
+                tracker_type:
+                  type: string
+                  example: multiple select
+                tracker_settings:
+                  type: array
+                  example: ["type1","type2"]
+                  nullable: True
+      responses:
+        '201':
+          description: Successfully Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tracker_name:
+                    type: string
+                    example: Running
+                  tracker_type:
+                    type: string
+                    example: multiple select
+                  tracker_settings:
+                    type: array
+                    example: ["type1","type2"]
+                    nullable: True
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+  /api/{name}:
+    description: End point to get the list of trackers realted to a user
+    get:
+      description: Operation to get the list of trackers related to a user
+      parameters:
+        - in: path
+          name: name
+          required: true
+          schema:
+            type: string
+            example: sharan
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: course object
+                type: object
+                properties:
+                  tracker_name:
+                    type: string
+                    example: Running
+                  tracker_type:
+                    type: string
+                    example: numeric
+                  tracker_settings:
+                    type: string
+                    example:
+        '500':
+          description: Internal Server Error
+        '404':
+          description: User not found  

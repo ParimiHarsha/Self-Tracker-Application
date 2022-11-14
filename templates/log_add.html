@@ -1,0 +1,73 @@
+<DOCTYPE! html>
+<html>
+<head>
+    <title> Add Log </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="/static/css/main.min.css" rel="stylesheet">
+</head>
+
+<style>
+    body {
+    
+        background-color: #362f58;
+        background-size: cover;
+        padding-top : 2en;
+        color: white;
+        padding-top: 2en;
+       }
+</style>
+
+<body>
+    <h2 style = "text-align: center;">Add Log for {{current_tracker['tracker_name']}} </h2>
+
+    <form action="/tracker/{{current_tracker['tracker_name']}}/add/{{name}}" method="POST" id="login">
+    
+        <div class = 'container' 'justify-content-center'>
+            <div class = 'row' align='center'>
+                <div class = 'col' >
+                    <div>
+                        <label>When:</label>
+                        <input type='datetime-local' name='datetime' value = {{current_datetime}} required />
+                    </div>
+                </div>
+            </div>
+        </div>   
+    {% if current_tracker['tracker_type'] == 'numeric'%}
+   
+    <div class = 'container' 'justify-content-center'>
+        <div class = 'row' align='center' >
+            <div class = 'col' >
+                <div>
+                    <label>Value</label>
+                    <input type="text" name="value" required />
+                </div>
+                {%else%}
+                <div>
+                    <label>Select from the following</label>
+                        <select  name="value" id = 'value'>
+                        {%for i in current_tracker['tracker_settings'].split(',')%}
+                            <option value = {{i}}>{{i}}</option>
+                        {% endfor %}
+                        </select> 
+                </div>
+                {%endif%}
+            </div>
+        </div>
+    </div>
+
+
+    <div class = 'container' 'justify-content-center'>
+        <div class = 'row' align='center' >
+            <div class = 'col' >
+                <div>
+                    <label>Notes</label>
+                    <input type="text" name="notes" required />
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div align='center'>
+        <input type="submit"  value = "Submit">
+    </div>
+</form>
